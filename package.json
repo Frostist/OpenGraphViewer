@@ -1,0 +1,13 @@
+{
+  "name": "opengraph-viewer",
+  "version": "1.0.0",
+  "description": "Preview Open Graph social media cards for localhost sites",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "express": "^4.18.2"
+  }
+}

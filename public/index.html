@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenGraph Viewer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .header {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #fff;
+    }
+
+    .header p {
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    .input-bar {
+      max-width: 800px;
+      margin: 0 auto 2.5rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .input-bar input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-bar input:focus {
+      border-color: #555;
+    }
+
+    .input-bar button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .input-bar button:hover { background: #1d4ed8; }
+    .input-bar button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .error-msg {
+      max-width: 800px;
+      margin: -1.5rem auto 2rem;
+      padding: 0.75rem 1rem;
+      background: #2d1515;
+      border: 1px solid #5c2020;
+      border-radius: 8px;
+      color: #f87171;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .previews {
+      max-width: 800px;
+      margin: 0 auto;
+      display: none;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #666;
+      margin-bottom: 0.75rem;
+    }
+
+    .preview-section {
+      margin-bottom: 2.5rem;
+    }
+
+    /* --- Facebook / Generic OG card --- */
+    .card-facebook {
+      border: 1px solid #333;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #1a1a1a;
+      max-width: 524px;
+    }
+
+    .card-facebook .card-img {
+      width: 100%;
+      aspect-ratio: 1.91 / 1;
+      object-fit: cover;
+      display: block;
+      background: #262626;
+    }
+
+    .card-facebook .card-body {
+      padding: 0.75rem 1rem;
+      border-top: 1px solid #333;
+    }
+
+    .card-facebook .card-site {
+      font-size: 0.75rem;
+      color: #888;
+      text-transform: uppercase;
+    }
+
+    .card-facebook .card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #e0e0e0;
+      margin: 0.15rem 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-facebook .card-desc {
+      font-size: 0.85rem;
+      color: #888;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* --- Twitter summary_large_image --- */
+    .card-twitter-large {
+      border: 1px solid #333;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #1a1a1a;
+      max-width: 524px;
+    }
+
+    .card-twitter-large .card-img {
+      width: 100%;
+      aspect-ratio: 2 / 1;
+      object-fit: cover;
+      display: block;
+      background: #262626;
+    }
+
+    .card-twitter-large .card-body {
+      padding: 0.7rem 0.9rem;
+    }
+
+    .card-twitter-large .card-site {
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    .card-twitter-large .card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #e0e0e0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-twitter-large .card-desc {
+      font-size: 0.85rem;
+      color: #888;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* --- Twitter summary (small) --- */
+    .card-twitter-small {
+      border: 1px solid #333;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #1a1a1a;
+      max-width: 524px;
+      display: flex;
+    }
+
+    .card-twitter-small .card-img {
+      width: 130px;
+      min-height: 130px;
+      object-fit: cover;
+      display: block;
+      background: #262626;
+      flex-shrink: 0;
+    }
+
+    .card-twitter-small .card-body {
+      padding: 0.7rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card-twitter-small .card-site { font-size: 0.8rem; color: #888; }
+    .card-twitter-small .card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #e0e0e0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-twitter-small .card-desc {
+      font-size: 0.8rem;
+      color: #888;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* --- LinkedIn --- */
+    .card-linkedin {
+      border: 1px solid #333;
+      border-radius: 2px;
+      overflow: hidden;
+      background: #1a1a1a;
+      max-width: 524px;
+    }
+
+    .card-linkedin .card-img {
+      width: 100%;
+      aspect-ratio: 1.91 / 1;
+      object-fit: cover;
+      display: block;
+      background: #262626;
+    }
+
+    .card-linkedin .card-body {
+      padding: 0.6rem 0.9rem;
+      border-top: 1px solid #333;
+    }
+
+    .card-linkedin .card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #e0e0e0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-linkedin .card-site {
+      font-size: 0.75rem;
+      color: #888;
+    }
+
+    /* --- Slack --- */
+    .card-slack {
+      border-left: 4px solid #2563eb;
+      padding: 0.6rem 1rem;
+      background: #1a1a1a;
+      border-radius: 0 4px 4px 0;
+      max-width: 524px;
+    }
+
+    .card-slack .card-site {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #ccc;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-slack .card-title {
+      font-size: 0.9rem;
+      color: #5ba4f5;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-slack .card-desc {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-slack .card-img {
+      max-width: 360px;
+      max-height: 200px;
+      border-radius: 4px;
+      display: block;
+      background: #262626;
+    }
+
+    /* --- Discord --- */
+    .card-discord {
+      border-left: 4px solid #5865f2;
+      padding: 0.75rem 1rem;
+      background: #2b2d31;
+      border-radius: 4px;
+      max-width: 432px;
+    }
+
+    .card-discord .card-site {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: #999;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-discord .card-title {
+      font-size: 0.95rem;
+      color: #00aff4;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-discord .card-desc {
+      font-size: 0.85rem;
+      color: #bbb;
+      margin-bottom: 0.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-discord .card-img {
+      max-width: 400px;
+      max-height: 225px;
+      border-radius: 4px;
+      display: block;
+      background: #262626;
+    }
+
+    /* --- Raw meta table --- */
+    .meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .meta-table th,
+    .meta-table td {
+      padding: 0.4rem 0.7rem;
+      border: 1px solid #333;
+      text-align: left;
+    }
+
+    .meta-table th {
+      background: #1a1a1a;
+      color: #aaa;
+      font-weight: 600;
+      white-space: nowrap;
+      width: 220px;
+    }
+
+    .meta-table td {
+      color: #ccc;
+      word-break: break-all;
+    }
+
+    .no-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      font-size: 0.85rem;
+    }
+
+    .warnings {
+      margin-bottom: 2rem;
+    }
+
+    .warning-item {
+      padding: 0.5rem 0.75rem;
+      background: #2d2515;
+      border: 1px solid #5c4a20;
+      border-radius: 6px;
+      color: #fbbf24;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>OpenGraph Viewer</h1>
+    <p>Preview how your localhost site looks when shared on social media</p>
+  </div>
+
+  <div class="input-bar">
+    <input type="text" id="urlInput" placeholder="http://localhost:3000" value="http://localhost:3000" />
+    <button id="fetchBtn" onclick="fetchOG()">Preview</button>
+  </div>
+
+  <div class="error-msg" id="errorMsg"></div>
+
+  <div class="previews" id="previews"></div>
+
+  <script>
+    const urlInput = document.getElementById("urlInput");
+    const fetchBtn = document.getElementById("fetchBtn");
+    const errorMsg = document.getElementById("errorMsg");
+    const previews = document.getElementById("previews");
+
+    urlInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") fetchOG();
+    });
+
+    async function fetchOG() {
+      const url = urlInput.value.trim();
+      if (!url) return;
+
+      errorMsg.style.display = "none";
+      previews.style.display = "none";
+      fetchBtn.disabled = true;
+      fetchBtn.textContent = "Loading...";
+
+      try {
+        const res = await fetch("/api/fetch-og", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || "Unknown error");
+        }
+
+        render(data, url);
+      } catch (err) {
+        errorMsg.textContent = err.message;
+        errorMsg.style.display = "block";
+      } finally {
+        fetchBtn.disabled = false;
+        fetchBtn.textContent = "Preview";
+      }
+    }
+
+    function esc(str) {
+      const div = document.createElement("div");
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function getDomain(url) {
+      try { return new URL(url).hostname; } catch { return url; }
+    }
+
+    function imgTag(src, cls, fallbackAspect) {
+      if (!src) {
+        const style = fallbackAspect ? `aspect-ratio:${fallbackAspect};` : "min-height:80px;";
+        return `<div class="${cls} no-img" style="${style}">No og:image found</div>`;
+      }
+      return `<img class="${cls}" src="${esc(src)}" alt="OG Image" onerror="this.outerHTML='<div class=\\'${cls} no-img\\' style=\\'aspect-ratio:1.91/1\\'>Image failed to load</div>'" />`;
+    }
+
+    function render(og, inputUrl) {
+      const domain = getDomain(og.url || inputUrl);
+      const warnings = [];
+
+      if (!og.title) warnings.push("Missing og:title — most platforms require this.");
+      if (!og.description) warnings.push("Missing og:description — recommended for all platforms.");
+      if (!og.image) warnings.push("Missing og:image — cards will render without a preview image.");
+      if (og.image && !og.imageWidth) warnings.push("Missing og:image:width / og:image:height — Facebook may not show the image on first share.");
+      if (!og.twitterCard) warnings.push("Missing twitter:card — Twitter/X will fall back to a basic summary card.");
+
+      const isLargeCard = og.twitterCard === "summary_large_image";
+
+      let html = "";
+
+      // Warnings
+      if (warnings.length) {
+        html += `<div class="warnings">`;
+        html += `<div class="section-label">Warnings</div>`;
+        warnings.forEach(w => html += `<div class="warning-item">${esc(w)}</div>`);
+        html += `</div>`;
+      }
+
+      // Facebook
+      html += `
+        <div class="preview-section">
+          <div class="section-label">Facebook / Open Graph</div>
+          <div class="card-facebook">
+            ${imgTag(og.image, "card-img", "1.91/1")}
+            <div class="card-body">
+              <div class="card-site">${esc(domain)}</div>
+              <div class="card-title">${esc(og.title || "Untitled")}</div>
+              <div class="card-desc">${esc(og.description)}</div>
+            </div>
+          </div>
+        </div>`;
+
+      // Twitter/X
+      if (isLargeCard) {
+        html += `
+          <div class="preview-section">
+            <div class="section-label">Twitter / X — summary_large_image</div>
+            <div class="card-twitter-large">
+              ${imgTag(og.image, "card-img", "2/1")}
+              <div class="card-body">
+                <div class="card-title">${esc(og.title || "Untitled")}</div>
+                <div class="card-desc">${esc(og.description)}</div>
+                <div class="card-site">${esc(domain)}</div>
+              </div>
+            </div>
+          </div>`;
+      } else {
+        html += `
+          <div class="preview-section">
+            <div class="section-label">Twitter / X — summary</div>
+            <div class="card-twitter-small">
+              ${imgTag(og.image, "card-img")}
+              <div class="card-body">
+                <div class="card-title">${esc(og.title || "Untitled")}</div>
+                <div class="card-desc">${esc(og.description)}</div>
+                <div class="card-site">${esc(domain)}</div>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      // LinkedIn
+      html += `
+        <div class="preview-section">
+          <div class="section-label">LinkedIn</div>
+          <div class="card-linkedin">
+            ${imgTag(og.image, "card-img", "1.91/1")}
+            <div class="card-body">
+              <div class="card-title">${esc(og.title || "Untitled")}</div>
+              <div class="card-site">${esc(domain)}</div>
+            </div>
+          </div>
+        </div>`;
+
+      // Discord
+      html += `
+        <div class="preview-section">
+          <div class="section-label">Discord</div>
+          <div class="card-discord">
+            <div class="card-site">${esc(og.siteName || domain)}</div>
+            <div class="card-title">${esc(og.title || "Untitled")}</div>
+            <div class="card-desc">${esc(og.description)}</div>
+            ${og.image ? imgTag(og.image, "card-img") : ""}
+          </div>
+        </div>`;
+
+      // Slack
+      html += `
+        <div class="preview-section">
+          <div class="section-label">Slack</div>
+          <div class="card-slack">
+            <div class="card-site">${esc(og.siteName || domain)}</div>
+            <div class="card-title">${esc(og.title || "Untitled")}</div>
+            <div class="card-desc">${esc(og.description)}</div>
+            ${og.image ? imgTag(og.image, "card-img") : ""}
+          </div>
+        </div>`;
+
+      // Raw meta tags
+      const entries = Object.entries(og.allMeta || {});
+      if (entries.length) {
+        html += `
+          <div class="preview-section">
+            <div class="section-label">All Meta Tags Found</div>
+            <table class="meta-table">
+              <tr><th>Property</th><th>Content</th></tr>
+              ${entries.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join("")}
+            </table>
+          </div>`;
+      }
+
+      previews.innerHTML = html;
+      previews.style.display = "block";
+    }
+  </script>
+</body>
+</html>
