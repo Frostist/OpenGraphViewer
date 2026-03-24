@@ -18,9 +18,9 @@
 
 ## About
 
-OpenGraph Viewer is a lightweight, local development tool that extracts OpenGraph and Twitter Card metadata from any URL and renders realistic previews for major social platforms. Stop guessing how your links will look — see exactly how they'll appear on Facebook, Twitter/X, LinkedIn, Discord, and Slack.
+OpenGraph Viewer is a lightweight tool that extracts OpenGraph and Twitter Card metadata from any URL and renders realistic previews for major social platforms. Stop guessing how your links will look — see exactly how they'll appear on Facebook, Twitter/X, LinkedIn, Discord, and Slack.
 
-Built for developers who want to validate their meta tags during local development without deploying to production first.
+Available as both a **desktop application** (macOS, Windows, Linux) and a **web server** for developers who want to validate their meta tags during local development without deploying to production first.
 
 ![OpenGraph Viewer — Metadata details](READMEAssets/Image%202.png)
 
@@ -35,11 +35,22 @@ Built for developers who want to validate their meta tags during local developme
 
 ## Getting Started
 
-### Prerequisites
+### Desktop Application (Recommended)
+
+Download the latest release for your platform:
+- **macOS**: Download `.dmg` file
+- **Windows**: Download `.exe` installer
+- **Linux**: Download `.AppImage` or `.deb` package
+
+Simply install and launch the app — no configuration needed!
+
+### Web Server (For Development)
+
+#### Prerequisites
 
 - [Node.js](https://nodejs.org/) v14 or later
 
-### Installation
+#### Installation
 
 ```bash
 git clone https://github.com/Frostist/OpenGraphViewer.git
@@ -47,13 +58,32 @@ cd OpenGraphViewer
 npm install
 ```
 
-### Usage
+#### Usage
 
+**Run as web server:**
 ```bash
 npm start
 ```
 
-Open [http://localhost:3456](http://localhost:3456) in your browser, enter a URL, and instantly preview how it will appear across social platforms.
+Open [http://localhost:3456](http://localhost:3456) in your browser.
+
+**Run as Electron desktop app:**
+```bash
+npm run electron
+```
+
+**Build desktop app for distribution:**
+```bash
+# Build for your current platform
+npm run electron:build
+
+# Build for specific platforms
+npm run electron:build:mac    # macOS (.dmg)
+npm run electron:build:win    # Windows (.exe)
+npm run electron:build:linux  # Linux (.AppImage, .deb)
+```
+
+Built applications will be in the `dist/` folder.
 
 ## API Reference
 
@@ -91,9 +121,11 @@ Content-Type: application/json
 
 | Layer | Technology |
 |-------|-----------|
+| Desktop App | [Electron](https://www.electronjs.org/) |
 | Backend | [Express.js](https://expressjs.com/) |
 | HTML Parsing | [Cheerio](https://cheerio.js.org/) |
 | Frontend | Vanilla HTML, CSS, and JavaScript |
+| Build Tool | [electron-builder](https://www.electron.build/) |
 
 ## Contributing
 
