@@ -135,3 +135,14 @@ dist
 .yarn/install-state.gz
 .pnp.*
 .DS_Store
+
+# Electron build output
+dist/
+*.dmg
+*.exe
+*.AppImage
+*.deb
+*.rpm
+
+# Electron builder cache
+.electron-builder-cache/

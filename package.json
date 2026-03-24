@@ -2,12 +2,75 @@
   "name": "opengraph-viewer",
   "version": "1.0.0",
   "description": "Preview Open Graph social media cards for localhost sites",
-  "main": "server.js",
+  "main": "main.js",
+  "author": "Frostist",
+  "license": "MIT",
+  "homepage": "https://github.com/Frostist/OpenGraphViewer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Frostist/OpenGraphViewer.git"
+  },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "electron": "electron .",
+    "electron:dev": "NODE_ENV=development electron .",
+    "electron:build": "electron-builder",
+    "electron:build:mac": "electron-builder --mac",
+    "electron:build:win": "electron-builder --win",
+    "electron:build:linux": "electron-builder --linux"
   },
   "dependencies": {
     "cheerio": "^1.0.0",
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "electron": "^41.0.3",
+    "electron-builder": "^26.8.1",
+    "electron-reload": "^2.0.0-alpha.1"
+  },
+  "build": {
+    "appId": "com.frostist.opengraph-viewer",
+    "productName": "OpenGraph Viewer",
+    "copyright": "Copyright 2024 Frostist",
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "server.js",
+      "public/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "build/icon.icns",
+      "darkModeSupport": true
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "build/icon.png",
+      "category": "Development"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }

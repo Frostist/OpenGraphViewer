@@ -3,7 +3,6 @@ const cheerio = require("cheerio");
 const path = require("path");
 
 const app = express();
-const PORT = 3456;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
@@ -97,6 +96,27 @@ app.post("/api/fetch-og", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`OpenGraph Viewer running at http://localhost:${PORT}`);
-});
+function startServer(port = 0) {
+  return new Promise((resolve, reject) => {
+    const server = app.listen(port, () => {
+      const actualPort = server.address().port;
+      console.log(`OpenGraph Viewer running at http://localhost:${actualPort}`);
+      resolve({ server, port: actualPort });
+    });
+
+    server.on('error', (err) => {
+      reject(err);
+    });
+  });
+}
+
+// If running directly (not via Electron), start the server on default port
+if (require.main === module) {
+  const PORT = 3456;
+  startServer(PORT).catch((err) => {
+    console.error('Failed to start server:', err);
+    process.exit(1);
+  });
+}
+
+module.exports = { app, startServer };
