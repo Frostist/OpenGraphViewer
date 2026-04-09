@@ -404,6 +404,291 @@
       font-size: 0.85rem;
       margin-bottom: 0.4rem;
     }
+
+    /* --- WhatsApp --- */
+    .card-whatsapp {
+      border: 1px solid #333;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #1a1a1a;
+      max-width: 360px;
+    }
+
+    .card-whatsapp .card-img {
+      width: 100%;
+      aspect-ratio: 1.91 / 1;
+      object-fit: cover;
+      display: block;
+      background: #262626;
+    }
+
+    .card-whatsapp .card-body {
+      padding: 0.6rem 0.8rem;
+      border-top: 1px solid #333;
+    }
+
+    .card-whatsapp .card-site {
+      font-size: 0.7rem;
+      color: #888;
+      text-transform: uppercase;
+    }
+
+    .card-whatsapp .card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #e0e0e0;
+      margin: 0.1rem 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-whatsapp .card-desc {
+      font-size: 0.8rem;
+      color: #888;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* --- Telegram --- */
+    .card-telegram {
+      border: 1px solid #333;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #1a1a1a;
+      max-width: 420px;
+    }
+
+    .card-telegram .card-img {
+      width: 100%;
+      aspect-ratio: 1.91 / 1;
+      object-fit: cover;
+      display: block;
+      background: #262626;
+    }
+
+    .card-telegram .card-body {
+      padding: 0.7rem 0.9rem;
+      border-top: 1px solid #333;
+    }
+
+    .card-telegram .card-site {
+      font-size: 0.75rem;
+      color: #8774e1;
+      font-weight: 600;
+    }
+
+    .card-telegram .card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #e0e0e0;
+      margin: 0.15rem 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-telegram .card-desc {
+      font-size: 0.85rem;
+      color: #888;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* --- iMessage --- */
+    .card-imessage {
+      border-radius: 18px;
+      overflow: hidden;
+      background: #1a1a1a;
+      max-width: 300px;
+      border: 1px solid #333;
+    }
+
+    .card-imessage .card-img {
+      width: 100%;
+      aspect-ratio: 1.5 / 1;
+      object-fit: cover;
+      display: block;
+      background: #262626;
+    }
+
+    .card-imessage .card-body {
+      padding: 0.6rem 0.8rem;
+    }
+
+    .card-imessage .card-site {
+      font-size: 0.7rem;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-imessage .card-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #e0e0e0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* --- Validation Score --- */
+    .validation-score {
+      background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .score-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .score-number {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .score-number.excellent { color: #10b981; }
+    .score-number.good { color: #3b82f6; }
+    .score-number.fair { color: #f59e0b; }
+    .score-number.poor { color: #ef4444; }
+
+    .score-label {
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: 0.3rem;
+    }
+
+    .score-bars {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .score-bar {
+      flex: 1;
+      height: 4px;
+      background: #333;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      background: #10b981;
+      transition: width 0.3s ease;
+    }
+
+    /* --- Export Section --- */
+    .export-section {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .export-buttons {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .export-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid #333;
+      border-radius: 6px;
+      background: #252525;
+      color: #e0e0e0;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .export-btn:hover {
+      background: #2d2d2d;
+      border-color: #444;
+    }
+
+    .export-btn.copied {
+      background: #10b981;
+      border-color: #10b981;
+      color: #fff;
+    }
+
+    /* --- Article/Video/Audio Metadata --- */
+    .metadata-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .metadata-item {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 0.6rem 0.8rem;
+    }
+
+    .metadata-label {
+      font-size: 0.7rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
+    }
+
+    .metadata-value {
+      font-size: 0.85rem;
+      color: #e0e0e0;
+      word-break: break-word;
+    }
+
+    /* --- Video/Audio Players --- */
+    .media-player {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .media-player video,
+    .media-player audio {
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    .info-badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      background: #2563eb;
+      color: #fff;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+    }
+
+    .info-badge.success { background: #10b981; }
+    .info-badge.warning { background: #f59e0b; }
+    .info-badge.error { background: #ef4444; }
   </style>
 </head>
 <body>
@@ -481,25 +766,289 @@
       return `<img class="${cls}" src="${esc(src)}" alt="OG Image" onerror="this.outerHTML='<div class=\\'${cls} no-img\\' style=\\'aspect-ratio:1.91/1\\'>Image failed to load</div>'" />`;
     }
 
+    function calculateScore(og) {
+      let score = 0;
+      const checks = {
+        hasTitle: og.title ? 15 : 0,
+        hasDescription: og.description ? 15 : 0,
+        hasImage: og.image ? 20 : 0,
+        hasImageDimensions: (og.imageWidth && og.imageHeight) ? 10 : 0,
+        hasUrl: og.url ? 5 : 0,
+        hasSiteName: og.siteName ? 5 : 0,
+        hasType: og.type ? 5 : 0,
+        hasTwitterCard: og.twitterCard ? 10 : 0,
+        hasLocale: og.locale ? 5 : 0,
+        hasImageAlt: og.imageAlt ? 5 : 0,
+        hasCanonical: og.canonical ? 5 : 0
+      };
+      
+      score = Object.values(checks).reduce((a, b) => a + b, 0);
+      return { score, checks };
+    }
+
+    function getScoreClass(score) {
+      if (score >= 85) return 'excellent';
+      if (score >= 70) return 'good';
+      if (score >= 50) return 'fair';
+      return 'poor';
+    }
+
+    function getScoreLabel(score) {
+      if (score >= 85) return 'Excellent';
+      if (score >= 70) return 'Good';
+      if (score >= 50) return 'Fair';
+      return 'Needs Improvement';
+    }
+
+    function generateMetaTags(og) {
+      const tags = [];
+      
+      if (og.title) tags.push(`<meta property="og:title" content="${og.title}" />`);
+      if (og.description) tags.push(`<meta property="og:description" content="${og.description}" />`);
+      if (og.image) tags.push(`<meta property="og:image" content="${og.image}" />`);
+      if (og.imageWidth) tags.push(`<meta property="og:image:width" content="${og.imageWidth}" />`);
+      if (og.imageHeight) tags.push(`<meta property="og:image:height" content="${og.imageHeight}" />`);
+      if (og.imageAlt) tags.push(`<meta property="og:image:alt" content="${og.imageAlt}" />`);
+      if (og.url) tags.push(`<meta property="og:url" content="${og.url}" />`);
+      if (og.siteName) tags.push(`<meta property="og:site_name" content="${og.siteName}" />`);
+      if (og.type) tags.push(`<meta property="og:type" content="${og.type}" />`);
+      if (og.locale) tags.push(`<meta property="og:locale" content="${og.locale}" />`);
+      
+      if (og.twitterCard) tags.push(`<meta name="twitter:card" content="${og.twitterCard}" />`);
+      if (og.twitterSite) tags.push(`<meta name="twitter:site" content="${og.twitterSite}" />`);
+      if (og.twitterCreator) tags.push(`<meta name="twitter:creator" content="${og.twitterCreator}" />`);
+      
+      if (og.video) tags.push(`<meta property="og:video" content="${og.video}" />`);
+      if (og.audio) tags.push(`<meta property="og:audio" content="${og.audio}" />`);
+      
+      return tags.join('\n');
+    }
+
+    async function copyToClipboard(text, btnId) {
+      try {
+        await navigator.clipboard.writeText(text);
+        const btn = document.getElementById(btnId);
+        const originalText = btn.textContent;
+        btn.classList.add('copied');
+        btn.textContent = '✓ Copied!';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.textContent = originalText;
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy:', err);
+      }
+    }
+
+    function formatDuration(seconds) {
+      if (!seconds) return '';
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      try {
+        return new Date(dateStr).toLocaleDateString('en-US', { 
+          year: 'numeric', month: 'short', day: 'numeric' 
+        });
+      } catch {
+        return dateStr;
+      }
+    }
+
     function render(og, inputUrl) {
       const domain = getDomain(og.url || inputUrl);
       const warnings = [];
+      const recommendations = [];
 
       if (!og.title) warnings.push("Missing og:title — most platforms require this.");
       if (!og.description) warnings.push("Missing og:description — recommended for all platforms.");
       if (!og.image) warnings.push("Missing og:image — cards will render without a preview image.");
       if (og.image && !og.imageWidth) warnings.push("Missing og:image:width / og:image:height — Facebook may not show the image on first share.");
       if (!og.twitterCard) warnings.push("Missing twitter:card — Twitter/X will fall back to a basic summary card.");
+      
+      if (og.imageWidth && og.imageHeight) {
+        const width = parseInt(og.imageWidth);
+        const height = parseInt(og.imageHeight);
+        const ratio = width / height;
+        
+        if (width < 1200 || height < 630) {
+          recommendations.push(`Image size ${width}x${height}px is smaller than Facebook's recommended 1200x630px.`);
+        }
+        if (ratio < 1.8 || ratio > 2.0) {
+          recommendations.push(`Image aspect ratio ${ratio.toFixed(2)}:1 differs from the optimal 1.91:1 for most platforms.`);
+        }
+      }
+      
+      if (og.title && og.title.length > 60) {
+        recommendations.push(`Title is ${og.title.length} characters. Consider keeping it under 60 for optimal display.`);
+      }
+      
+      if (og.description && og.description.length > 155) {
+        recommendations.push(`Description is ${og.description.length} characters. Consider keeping it under 155 for optimal display.`);
+      }
 
+      const { score, checks } = calculateScore(og);
+      const scoreClass = getScoreClass(score);
+      const scoreLabel = getScoreLabel(score);
       const isLargeCard = og.twitterCard === "summary_large_image";
 
       let html = "";
 
-      // Warnings
-      if (warnings.length) {
+      // Validation Score
+      html += `
+        <div class="validation-score">
+          <div class="score-header">
+            <div>
+              <div class="score-number ${scoreClass}">${score}</div>
+              <div class="score-label">${scoreLabel}</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.85rem; color: #888;">SEO & Social Score</div>
+              <div style="font-size: 0.75rem; color: #666; margin-top: 0.2rem;">Out of 100</div>
+            </div>
+          </div>
+          <div class="score-bars">
+            ${[...Array(10)].map((_, i) => `
+              <div class="score-bar">
+                <div class="score-bar-fill" style="width: ${score > i * 10 ? '100%' : '0%'}"></div>
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+
+      // Export Section
+      html += `
+        <div class="export-section">
+          <div class="section-label">Export Meta Tags</div>
+          <div class="export-buttons">
+            <button class="export-btn" id="copyAllBtn" onclick="copyToClipboard(\`${esc(generateMetaTags(og).replace(/`/g, '\\`'))}\`, 'copyAllBtn')">📋 Copy All Tags</button>
+            <button class="export-btn" id="copyBasicBtn" onclick="copyToClipboard(\`<meta property='og:title' content='${esc(og.title)}' />\\n<meta property='og:description' content='${esc(og.description)}' />\\n<meta property='og:image' content='${esc(og.image)}' />\`, 'copyBasicBtn')">📋 Copy Basic Tags</button>
+            <button class="export-btn" id="copyUrlBtn" onclick="copyToClipboard('${esc(og.url || inputUrl)}', 'copyUrlBtn')">🔗 Copy URL</button>
+          </div>
+        </div>`;
+
+      // Warnings & Recommendations
+      if (warnings.length || recommendations.length) {
         html += `<div class="warnings">`;
-        html += `<div class="section-label">Warnings</div>`;
-        warnings.forEach(w => html += `<div class="warning-item">${esc(w)}</div>`);
+        if (warnings.length) {
+          html += `<div class="section-label">⚠️ Warnings</div>`;
+          warnings.forEach(w => html += `<div class="warning-item">${esc(w)}</div>`);
+        }
+        if (recommendations.length) {
+          html += `<div class="section-label" style="margin-top: ${warnings.length ? '1.5rem' : '0'}">💡 Recommendations</div>`;
+          recommendations.forEach(r => html += `<div class="warning-item" style="background: #1a2a3a; border-color: #2d4a5a; color: #60a5fa;">${esc(r)}</div>`);
+        }
+        html += `</div>`;
+      }
+
+      // Article Metadata
+      if (og.type === 'article' && (og.articlePublishedTime || og.articleAuthor || og.articleSection)) {
+        html += `
+          <div class="preview-section">
+            <div class="section-label">📰 Article Metadata</div>
+            <div class="metadata-grid">`;
+        
+        if (og.articlePublishedTime) html += `
+          <div class="metadata-item">
+            <div class="metadata-label">Published</div>
+            <div class="metadata-value">${esc(formatDate(og.articlePublishedTime))}</div>
+          </div>`;
+        
+        if (og.articleModifiedTime) html += `
+          <div class="metadata-item">
+            <div class="metadata-label">Modified</div>
+            <div class="metadata-value">${esc(formatDate(og.articleModifiedTime))}</div>
+          </div>`;
+        
+        if (og.articleAuthor) html += `
+          <div class="metadata-item">
+            <div class="metadata-label">Author</div>
+            <div class="metadata-value">${esc(og.articleAuthor)}</div>
+          </div>`;
+        
+        if (og.articleSection) html += `
+          <div class="metadata-item">
+            <div class="metadata-label">Section</div>
+            <div class="metadata-value">${esc(og.articleSection)}</div>
+          </div>`;
+        
+        if (og.articleTag) html += `
+          <div class="metadata-item">
+            <div class="metadata-label">Tags</div>
+            <div class="metadata-value">${esc(og.articleTag)}</div>
+          </div>`;
+        
+        html += `</div></div>`;
+      }
+
+      // Video Content
+      if (og.video) {
+        html += `
+          <div class="preview-section">
+            <div class="section-label">🎥 Video Content</div>
+            <div class="metadata-grid">`;
+        
+        if (og.videoWidth && og.videoHeight) html += `
+          <div class="metadata-item">
+            <div class="metadata-label">Dimensions</div>
+            <div class="metadata-value">${esc(og.videoWidth)}x${esc(og.videoHeight)}px</div>
+          </div>`;
+        
+        if (og.videoType) html += `
+          <div class="metadata-item">
+            <div class="metadata-label">Type</div>
+            <div class="metadata-value">${esc(og.videoType)}</div>
+          </div>`;
+        
+        if (og.videoDuration) html += `
+          <div class="metadata-item">
+            <div class="metadata-label">Duration</div>
+            <div class="metadata-value">${formatDuration(og.videoDuration)}</div>
+          </div>`;
+        
+        html += `</div>`;
+        
+        if (og.videoType && og.videoType.includes('video/')) {
+          html += `
+            <div class="media-player">
+              <video controls>
+                <source src="${esc(og.video)}" type="${esc(og.videoType)}">
+                Your browser does not support the video tag.
+              </video>
+            </div>`;
+        }
+        
+        html += `</div>`;
+      }
+
+      // Audio Content
+      if (og.audio) {
+        html += `
+          <div class="preview-section">
+            <div class="section-label">🎵 Audio Content</div>
+            <div class="metadata-grid">`;
+        
+        if (og.audioType) html += `
+          <div class="metadata-item">
+            <div class="metadata-label">Type</div>
+            <div class="metadata-value">${esc(og.audioType)}</div>
+          </div>`;
+        
+        html += `</div>`;
+        
+        if (og.audioType && og.audioType.includes('audio/')) {
+          html += `
+            <div class="media-player">
+              <audio controls>
+                <source src="${esc(og.audio)}" type="${esc(og.audioType)}">
+                Your browser does not support the audio tag.
+              </audio>
+            </div>`;
+        }
+        
         html += `</div>`;
       }
 
@@ -580,6 +1129,47 @@
             <div class="card-title">${esc(og.title || "Untitled")}</div>
             <div class="card-desc">${esc(og.description)}</div>
             ${og.image ? imgTag(og.image, "card-img") : ""}
+          </div>
+        </div>`;
+
+      // WhatsApp
+      html += `
+        <div class="preview-section">
+          <div class="section-label">WhatsApp</div>
+          <div class="card-whatsapp">
+            ${imgTag(og.image, "card-img", "1.91/1")}
+            <div class="card-body">
+              <div class="card-site">${esc(domain)}</div>
+              <div class="card-title">${esc(og.title || "Untitled")}</div>
+              <div class="card-desc">${esc(og.description)}</div>
+            </div>
+          </div>
+        </div>`;
+
+      // Telegram
+      html += `
+        <div class="preview-section">
+          <div class="section-label">Telegram</div>
+          <div class="card-telegram">
+            ${imgTag(og.image, "card-img", "1.91/1")}
+            <div class="card-body">
+              <div class="card-site">${esc(og.siteName || domain)}</div>
+              <div class="card-title">${esc(og.title || "Untitled")}</div>
+              <div class="card-desc">${esc(og.description)}</div>
+            </div>
+          </div>
+        </div>`;
+
+      // iMessage
+      html += `
+        <div class="preview-section">
+          <div class="section-label">iMessage</div>
+          <div class="card-imessage">
+            ${imgTag(og.image, "card-img", "1.5/1")}
+            <div class="card-body">
+              <div class="card-site">${esc(domain)}</div>
+              <div class="card-title">${esc(og.title || "Untitled")}</div>
+            </div>
           </div>
         </div>`;
 
