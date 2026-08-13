@@ -24,7 +24,7 @@
     "express": "^4.22.2"
   },
   "devDependencies": {
-    "concurrently": "^10.0.3",
+    "concurrently": "^10.0.4",
     "electron": "^41.1.0",
     "electron-builder": "^26.8.1",
     "electron-reload": "^2.0.0-alpha.1"
